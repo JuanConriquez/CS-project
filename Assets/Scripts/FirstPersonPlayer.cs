@@ -14,6 +14,11 @@ public class FirstPersonPlayer : MonoBehaviour
     public float minVerticalAngle = -80f;
     public float maxVerticalAngle = 80f;
 
+    [Header("Audio")]
+    public AudioSource footstepSource;      
+    public float walkPitch = 1.0f;
+    public float runPitch = 1.2f;
+
     private CharacterController controller;
     private Vector3 velocity;
     private float cameraVerticalAngle = 0f;
@@ -25,6 +30,11 @@ public class FirstPersonPlayer : MonoBehaviour
         if (playerCamera == null)
         {
             playerCamera = GetComponentInChildren<Camera>(); //if camera is not set, automatically assign one
+        }
+
+        if (footstepSource == null)
+        {
+            footstepSource = GetComponent<AudioSource>();
         }
     }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -95,5 +105,29 @@ public class FirstPersonPlayer : MonoBehaviour
 
         controller.Move(finalVelocoty * Time.deltaTime); //Move the character, controller handles most terrain/obsticals i.e. sliding, collision, etc...
 
+    }
+
+    // AUDIO
+    void HandleFootsteps(bool isMovingOnGround, bool isRunning)
+    {
+        if (footstepSource == null) return;
+
+        if (isMovingOnGround)
+        {
+            // Adjust pitch based on walk vs run 
+            footstepSource.pitch = isRunning ? runPitch : walkPitch;
+
+            if (!footstepSource.isPlaying)
+            {
+                footstepSource.Play();
+            }
+        }
+        else
+        {
+            if (footstepSource.isPlaying)
+            {
+                footstepSource.Stop();
+            }
+        }
     }
 }
