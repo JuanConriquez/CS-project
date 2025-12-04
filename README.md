@@ -3,7 +3,7 @@ Group project for CS 530
 
 Name of Game: Resident
 
-Group Members: Gabriel Sawaya, Rafael Aguilar, [Name], [Name]
+Group Members: Gabriel Sawaya, Rafael Aguilar, Juan Conriquez, [Name]
 
 Current target for game: 
 
