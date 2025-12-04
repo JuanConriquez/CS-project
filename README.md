@@ -62,3 +62,7 @@ Rafael : Audio/Narrative/QA (Sound, Story, Testing)
 - Perform regular testing and bug reporting
 
 - Balance gameplay (enemy speed, ammo, difficulty)
+
+
+
+Current Gameplay: https://youtu.be/R0HsZBr1gsk
