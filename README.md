@@ -3,7 +3,12 @@ Group project for CS 530
 
 Name of Game: Resident
 
-Group Members: Gabriel Sawaya, Rafael Aguilar, Juan Conriquez, [Name]
+Group Members: Gabriel Sawaya, Rafael Aguilar, Juan Conriquez, Skyler Varney
+
+Description: 
+You wake up in a mysterious house, confused as to how you ended up there, you roam around only to find 
+a stranger trying to keep you inside the house. Your goal is to scape the house by exploring the house,
+exploring the different puzzles there is in order to unlock the front door and scape. 
 
 Current target for game: 
 
@@ -39,7 +44,7 @@ Juan: Level Designer (Environment & Triggers)
 
 
 
-person 3: Artist (3D Assets, Animations, Visual Polish)
+Skyler: Artist (3D Assets, Animations, Visual Polish)
 - Collect/create 3D assets (rooms, props, items)
 
 - Prepare character/enemy models (using premade rigs if needed)
