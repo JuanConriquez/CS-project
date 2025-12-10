@@ -13,16 +13,19 @@ public class EnemyAI : MonoBehaviour
     [Header("Movement")]
     public float patrolSpeed = 2f; //Speed of enemy when not chaseing (just patrolling)
     public float chaseSpeed = 3.5f; //Enemy speed when chasing
+    public float rotationSpeed = 5f; //How quickly the enemy turns to face the player
 
-    private NavMeshAgent agent;
+    private CharacterController controller;
 
     // Two enemy states: Idle and Chasing
+   
     private enum State { Idle, Chasing }
     private State currentState = State.Idle;
+    private Vector3 moveDirection = Vector3.zero;
 
     void Awake()
     {
-        agent = GetComponent<NavMeshAgent>();
+        controller = GetComponent<CharacterController>();
 
         if (player == null)
         {
@@ -55,6 +58,8 @@ public class EnemyAI : MonoBehaviour
                 HandleChase(distanceToPlayer);
                 break;
         }
+
+        controller.SimpleMove(moveDirection);
     }
 
     // HandleIdle()
@@ -63,8 +68,7 @@ public class EnemyAI : MonoBehaviour
     void HandleIdle(float distanceToPlayer)
     {
         //Just have the enemy stand still for now
-        agent.speed = patrolSpeed;
-        agent.ResetPath();
+        moveDirection = Vector3.zero;
 
         // Patrol handling...
 
@@ -78,17 +82,20 @@ public class EnemyAI : MonoBehaviour
     // Function to implement Enemy Chase behavior, where the enemy simply follows the player
     void HandleChase(float distanceToPlayer)
     {
-        agent.speed = chaseSpeed;
-
-        agent.SetDestination(player.position); //Makes the enemy move towards the player
-
-        Vector3 direction = (player.position - transform.position).normalized; //Rotate the enemy to face the player more directly
+    
+        Vector3 direction = (player.position - transform.position); //Rotate the enemy to face the player more directly
         direction.y = 0f;
 
         if (direction.sqrMagnitude > 0.01f)
         {
+            direction.Normalize();
+            moveDirection = direction * chaseSpeed;
+
             Quaternion targetRot = Quaternion.LookRotation(direction);
             transform.rotation = Quaternion.Slerp(transform.rotation, targetRot, Time.deltaTime * 5f);
+        } else
+        {
+            moveDirection = Vector3.zero;
         }
 
         if (distanceToPlayer > loseSightRadius) //If player is far enough...
