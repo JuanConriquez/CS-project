@@ -23,9 +23,13 @@ public class EnemyAI : MonoBehaviour
     private State currentState = State.Idle;
     private Vector3 moveDirection = Vector3.zero;
 
+    private Animator animator;
+
     void Awake()
     {
         controller = GetComponent<CharacterController>();
+
+        animator = GetComponentInChildren<Animator>();
 
         if (player == null)
         {
@@ -67,6 +71,10 @@ public class EnemyAI : MonoBehaviour
     // Patrolling will be implemented as well (later)
     void HandleIdle(float distanceToPlayer)
     {
+        animator.SetBool("isIdle", true);
+        animator.SetBool("isRoaming", false);
+        animator.SetBool("isChasing", false);
+
         //Just have the enemy stand still for now
         moveDirection = Vector3.zero;
 
@@ -82,7 +90,10 @@ public class EnemyAI : MonoBehaviour
     // Function to implement Enemy Chase behavior, where the enemy simply follows the player
     void HandleChase(float distanceToPlayer)
     {
-    
+        animator.SetBool("isIdle", false);
+        animator.SetBool("isRoaming", false);
+        animator.SetBool("isChasing", true);
+
         Vector3 direction = (player.position - transform.position); //Rotate the enemy to face the player more directly
         direction.y = 0f;
 
