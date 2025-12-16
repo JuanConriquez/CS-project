@@ -747,6 +747,11 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1144243398}
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!20 &1438456245 stripped
+Camera:
+  m_CorrespondingSourceObject: {fileID: 3986035479980795193, guid: 7731d91f7ff97c349976cbe9524b7bfb, type: 3}
+  m_PrefabInstance: {fileID: 1639470718}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1511154364
 GameObject:
   m_ObjectHideFlags: 0
@@ -1063,6 +1068,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 247197219831901854, guid: 7731d91f7ff97c349976cbe9524b7bfb, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2076533329}
+    - targetCorrespondingSourceObject: {fileID: 247197219831901854, guid: 7731d91f7ff97c349976cbe9524b7bfb, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2076533334}
   m_SourcePrefab: {fileID: 100100000, guid: 7731d91f7ff97c349976cbe9524b7bfb, type: 3}
 --- !u!1 &1843750627
 GameObject:
@@ -1197,6 +1205,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 04c652fdbe7745745b44345dbd176caf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Inventory
+--- !u!114 &2076533334
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2076533323}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb0ac1494879b6c4db04458ec3971c2a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Interactor
+  playerCamera: {fileID: 1438456245}
+  inventory: {fileID: 2076533329}
+  interactDistance: 3
 --- !u!1 &2099222103
 GameObject:
   m_ObjectHideFlags: 0
