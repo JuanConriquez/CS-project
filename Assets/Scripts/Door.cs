@@ -54,7 +54,15 @@ public class Door : MonoBehaviour
 
     void Update()
     {
-        Quaternion targetRot = isOpen ? openRotation : closedRotation; //Figure out where the door should be depending on the state
+        // Juan - added this so i could open and test it opens when i click E
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            TryOpenOrClose(null); // no inventory needed
+        }
+    
+
+
+    Quaternion targetRot = isOpen ? openRotation : closedRotation; //Figure out where the door should be depending on the state
         // If door is opening, openRotation
         // If door is closing, closedRotation
 
