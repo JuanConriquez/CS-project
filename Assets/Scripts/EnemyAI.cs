@@ -15,6 +15,10 @@ public class EnemyAI : MonoBehaviour
     public float chaseSpeed = 3.5f; //Enemy speed when chasing
     public float rotationSpeed = 5f; //How quickly the enemy turns to face the player
 
+    [Header("Door Breaking")]
+    public float doorCheckDistance = 1.5f;
+    public float doorDamagePerSecond = 25f;
+
     private CharacterController controller;
 
     // Two enemy states: Idle and Chasing
@@ -55,7 +59,10 @@ public class EnemyAI : MonoBehaviour
         switch (currentState)
         {
             case State.Idle:
-                HandleIdle(distanceToPlayer);
+                moveDirection = Vector3.zero;
+                if (distanceToPlayer <= detectionRadius)
+                    currentState = State.Chasing;
+                //HandleIdle(distanceToPlayer);
                 break;
 
             case State.Chasing:
@@ -98,7 +105,16 @@ public class EnemyAI : MonoBehaviour
         if (direction.sqrMagnitude > 0.01f)
         {
             direction.Normalize();
-            moveDirection = direction * chaseSpeed;
+
+            if (CheckAndDamageDoor(direction)) //Check if enemy is in front of door
+            {
+                moveDirection = Vector3.zero; //Don't move when at door
+            } else
+            {
+                moveDirection = direction * chaseSpeed;
+            }
+
+            //moveDirection = direction * chaseSpeed;
 
             Quaternion targetRot = Quaternion.LookRotation(direction);
             transform.rotation = Quaternion.Slerp(transform.rotation, targetRot, Time.deltaTime * 5f);
@@ -112,6 +128,26 @@ public class EnemyAI : MonoBehaviour
         {
             currentState = State.Idle; //...stop chasing and enter Idle state
         }
+    }
+
+    private bool CheckAndDamageDoor(Vector3 forwardDir)
+    {
+        float doorCheckDistance = 1.5f;
+        float doorDamagePerSecond = 25f;
+
+        Vector3 rayOrigin = transform.position + Vector3.up * 1.0f;
+
+        if(Physics.Raycast(rayOrigin, forwardDir, out RaycastHit hit, doorCheckDistance))
+        {
+            Door door = hit.collider.GetComponent<Door>();
+            if (door != null && !door.isBroken)
+            {
+                door.TakeDamage(doorDamagePerSecond * Time.deltaTime);
+                return true;
+            }
+        }
+        return false;
+
     }
 }
 
