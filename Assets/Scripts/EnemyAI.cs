@@ -71,7 +71,6 @@ public class EnemyAI : MonoBehaviour
     // Patrolling will be implemented as well (later)
     void HandleIdle(float distanceToPlayer)
     {
-        animator.SetBool("isIdle", true);
         animator.SetBool("isRoaming", false);
         animator.SetBool("isChasing", false);
 
@@ -90,7 +89,6 @@ public class EnemyAI : MonoBehaviour
     // Function to implement Enemy Chase behavior, where the enemy simply follows the player
     void HandleChase(float distanceToPlayer)
     {
-        animator.SetBool("isIdle", false);
         animator.SetBool("isRoaming", false);
         animator.SetBool("isChasing", true);
 
