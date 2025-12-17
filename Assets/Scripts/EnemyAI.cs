@@ -18,7 +18,7 @@ public class EnemyAI : MonoBehaviour
     private CharacterController controller;
 
     // Two enemy states: Idle and Chasing
-   
+
     private enum State { Idle, Chasing }
     private State currentState = State.Idle;
     private Vector3 moveDirection = Vector3.zero;
@@ -104,7 +104,8 @@ public class EnemyAI : MonoBehaviour
 
             Quaternion targetRot = Quaternion.LookRotation(direction);
             transform.rotation = Quaternion.Slerp(transform.rotation, targetRot, Time.deltaTime * 5f);
-        } else
+        }
+        else
         {
             moveDirection = Vector3.zero;
         }
@@ -115,3 +116,4 @@ public class EnemyAI : MonoBehaviour
         }
     }
 }
+

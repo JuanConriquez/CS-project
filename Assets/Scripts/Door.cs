@@ -16,8 +16,9 @@ public class Door : MonoBehaviour
     [Tooltip("Transform that rotates when the door opens. Default to this transform.")]
     public Transform doorTransform; 
     public float openAngle = 90f; 
-    public float openSpeed = 3f; 
+    public float openSpeed = 3f;
 
+    public bool IsOpen => isOpen;
     private bool isOpen = false; //tracks open doors
     private Quaternion closedRotation; 
     private Quaternion openRotation;
@@ -71,5 +72,11 @@ public class Door : MonoBehaviour
             doorTransform.localRotation,
             targetRot,
             Time.deltaTime * openSpeed);
+    }
+
+    // Used by the enemy (or other systems) to open the door without checking keys.
+    public void ForceOpen()
+    {
+        isOpen = true;
     }
 }
