@@ -9,6 +9,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7080858968819370759}
+  - component: {fileID: 1998696578575474210}
+  - component: {fileID: 7863996031302687738}
   m_Layer: 0
   m_Name: Door_1_light_full
   m_TagString: Untagged
@@ -26,12 +28,132 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.05, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1297519562397146453}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1998696578575474210
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8601614153650410788}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d934274dc68a7b48afadcbea58f2d91, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Door
+  requiresKey: 0
+  requiredKeyID: RoomA
+  maxHealth: 100
+  currentHealth: 0
+  isBroken: 0
+  slideDirection: {x: 1, y: 0, z: 0}
+  slideDistance: 15
+  slideSpeed: 3
+  openDoorSFX: {fileID: 8300000, guid: a4524ab7e78be9f48ae7faba85ab49b8, type: 3}
+  closeDoorSFX: {fileID: 8300000, guid: 37915342f5c1fbe4e92b34a26d43a385, type: 3}
+  doorVolume: 1
+--- !u!82 &7863996031302687738
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8601614153650410788}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_Resource: {fileID: 0}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1001 &1552350266126252734
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -85,12 +207,20 @@ PrefabInstance:
       value: SM_door_1_full
       objectReference: {fileID: 0}
     - target: {fileID: 1868416952250091302, guid: 8a941f8e90bb7984493096f4c512e600, type: 3}
-      propertyPath: m_Materials.Array.data[0]
+      propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: b4c7bed82c91aca4095fdec706d0f1fe, type: 2}
     - target: {fileID: 6567755677274391801, guid: 8a941f8e90bb7984493096f4c512e600, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 2.5597167
+      objectReference: {fileID: 0}
+    - target: {fileID: 6567755677274391801, guid: 8a941f8e90bb7984493096f4c512e600, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.514462
+      objectReference: {fileID: 0}
+    - target: {fileID: 6567755677274391801, guid: 8a941f8e90bb7984493096f4c512e600, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -0.0338
       objectReference: {fileID: 0}
     - target: {fileID: 6567755677274391801, guid: 8a941f8e90bb7984493096f4c512e600, type: 3}
       propertyPath: m_LocalPosition.y
@@ -103,10 +233,65 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: -3398262437259234237, guid: 8a941f8e90bb7984493096f4c512e600, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6196520221972350044}
+    - targetCorrespondingSourceObject: {fileID: -3398262437259234237, guid: 8a941f8e90bb7984493096f4c512e600, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5458798081515501159}
   m_SourcePrefab: {fileID: 100100000, guid: 8a941f8e90bb7984493096f4c512e600, type: 3}
 --- !u!4 &1297519562397146453 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 8a941f8e90bb7984493096f4c512e600, type: 3}
   m_PrefabInstance: {fileID: 1552350266126252734}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &4998428267622698749 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: -3398262437259234237, guid: 8a941f8e90bb7984493096f4c512e600, type: 3}
+  m_PrefabInstance: {fileID: 1552350266126252734}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &6196520221972350044
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4998428267622698749}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1.162653, y: 2.233667, z: 0.1157658}
+  m_Center: {x: 0.0000019073486, y: 1.1168334, z: -0.0000000037252903}
+--- !u!114 &5458798081515501159
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4998428267622698749}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d934274dc68a7b48afadcbea58f2d91, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Door
+  requiresKey: 0
+  requiredKeyID: 
+  maxHealth: 100
+  currentHealth: 0
+  isBroken: 0
+  slideDirection: {x: 1, y: 0, z: 0}
+  slideDistance: 1
+  slideSpeed: 3
+  openDoorSFX: {fileID: 0}
+  closeDoorSFX: {fileID: 0}
+  doorVolume: 1
