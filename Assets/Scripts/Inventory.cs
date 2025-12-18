@@ -16,11 +16,24 @@ public class Inventory : MonoBehaviour
         }
     }
     
-    // HasKey (string keyID)
-    // Checks if player has correct key (for advancing through doors)
+   //lowkey not used at all bc we just have on door that needs all keys
     public bool HasKey(string keyID)
     {
         if (string.IsNullOrEmpty(keyID)) return false; //If incorrect key is used for door
         return keys.Contains(keyID); //Otherwise, use key to open door
+    }
+
+
+    public bool HasAllKeys(IEnumerable<string> keyIDs)
+    {
+        if (keyIDs == null) return false;
+
+        foreach (string id in keyIDs)
+        {
+            if (string.IsNullOrEmpty(id)) return false;   
+            if (!keys.Contains(id)) return false;         // missing one of the keys
+        }
+
+        return true; //only if all 4 keys collected
     }
 }
