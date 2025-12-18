@@ -2581,7 +2581,7 @@ Transform:
   m_GameObject: {fileID: 3217066846508501379}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.5123, y: 8.76, z: -0.3408}
+  m_LocalPosition: {x: -3.5123, y: 10.48, z: -0.3408}
   m_LocalScale: {x: 0.3, y: 3, z: 0.028926238}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -7593,7 +7593,7 @@ BoxCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -8324,6 +8324,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 5824098511315960636, guid: 578aab00db6034d4198126fbabd2f0e5, type: 3}
       insertIndex: -1
       addedObject: {fileID: 3751442449231886895}
+    - targetCorrespondingSourceObject: {fileID: 5824098511315960636, guid: 578aab00db6034d4198126fbabd2f0e5, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 880591536627729762}
   m_SourcePrefab: {fileID: 100100000, guid: 578aab00db6034d4198126fbabd2f0e5, type: 3}
 --- !u!4 &4728830863014055326 stripped
 Transform:
@@ -8499,6 +8502,18 @@ MonoBehaviour:
   playerCamera: {fileID: 8088654609851731617}
   inventory: {fileID: 0}
   interactDistance: 3
+--- !u!114 &880591536627729762
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4756453302980866979}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 04c652fdbe7745745b44345dbd176caf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Inventory
 --- !u!4 &6374721976937093150 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5379132439161530497, guid: 578aab00db6034d4198126fbabd2f0e5, type: 3}
