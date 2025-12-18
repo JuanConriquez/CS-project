@@ -54,7 +54,7 @@ public class MusicManagerSingle : MonoBehaviour
     {
         if (routine != null) StopCoroutine(routine);
 
-        if (scene.name == "SampleScene")
+        if (scene.name == "skylertest")
         {
             // Fade out menu immediately, then delay ambience
             routine = StartCoroutine(FadeOutThenDelayPlay(scene));
