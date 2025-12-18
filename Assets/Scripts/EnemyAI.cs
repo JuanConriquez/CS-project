@@ -26,6 +26,16 @@ public class EnemyAI : MonoBehaviour
     public float attackRange = 1.5f;
     public float attackCooldown = 1f; // seconds between hits
 
+    // 🔊 ADD — Footstep audio settings
+    [Header("Audio - Footsteps")]
+    public AudioClip[] footstepClips;
+    [Range(0f, 1f)] public float footstepVolume = 0.8f;
+    public float baseStepInterval = 0.5f;   // seconds between steps at patrol speed
+    public float minStepInterval = 0.25f;   // faster cap (chasing)
+    public float stepMoveThreshold = 0.2f;  // how fast enemy must be moving to play steps
+    private AudioSource footstepSource;
+    private float stepTimer = 0f;
+
     private float attackTimer = 0f;
     private PlayerHealth playerHealth;
 
@@ -49,6 +59,12 @@ public class EnemyAI : MonoBehaviour
         animator = GetComponentInChildren<Animator>();
 
         playerHealth = player.GetComponent<PlayerHealth>();
+
+        // setup AudioSource for footsteps
+        footstepSource = GetComponent<AudioSource>();
+        if (footstepSource == null) footstepSource = gameObject.AddComponent<AudioSource>();
+        footstepSource.playOnAwake = false;
+        footstepSource.spatialBlend = 1f; // 3D footsteps
 
         if (player == null)
         {
@@ -84,6 +100,9 @@ public class EnemyAI : MonoBehaviour
         }
 
         controller.SimpleMove(moveDirection);
+
+        // 🔊 ADD — footstep update AFTER movement is applied
+        HandleFootsteps();
     }
 
     // HandleIdle()
@@ -215,5 +234,40 @@ public class EnemyAI : MonoBehaviour
 
         // Actually deal damage
         playerHealth.TakeDamage(damagePerHit);
+    }
+
+    // 🔊 ADD — Footstep logic
+    void HandleFootsteps()
+    {
+        if (footstepClips == null || footstepClips.Length == 0) return;
+        if (controller == null) return;
+
+        // actual movement speed from CharacterController
+        float speed = controller.velocity.magnitude;
+
+        // basic "is moving" check
+        bool isMoving = speed > stepMoveThreshold;
+
+        if (!isMoving)
+        {
+            stepTimer = 0f;
+            return;
+        }
+
+        // Step timing scales: patrol = slower, chase = faster
+        float targetSpeed = (currentState == State.Chasing) ? chaseSpeed : patrolSpeed;
+        float t = (targetSpeed <= 0.01f) ? 1f : Mathf.Clamp01(speed / targetSpeed);
+
+        float interval = Mathf.Lerp(baseStepInterval, minStepInterval, t);
+
+        stepTimer -= Time.deltaTime;
+        if (stepTimer <= 0f)
+        {
+            AudioClip clip = footstepClips[Random.Range(0, footstepClips.Length)];
+            if (clip != null)
+                footstepSource.PlayOneShot(clip, footstepVolume);
+
+            stepTimer = interval;
+        }
     }
 }
