@@ -27,11 +27,6 @@ public class EnemyAI : MonoBehaviour
 
     private enum State { Roam, Chasing }
     private State currentState = State.Roam;
-
-    [Header("Door Breaking")]
-    public float doorCheckDistance = 1.5f;
-    public float doorDamagePerSecond = 25f;
-
     private Vector3 moveDirection = Vector3.zero;
 
     private Animator animator;
@@ -178,21 +173,11 @@ public class EnemyAI : MonoBehaviour
         if (direction.sqrMagnitude > 0.01f)
         {
             direction.Normalize();
-
-            if (CheckAndDamageDoor(direction)) //Check if enemy is in front of door
-            {
-                moveDirection = Vector3.zero; //Don't move when at door
-            } else
-            {
-                moveDirection = direction * chaseSpeed;
-            }
-
-            //moveDirection = direction * chaseSpeed;
+            moveDirection = direction * chaseSpeed;
 
             Quaternion targetRot = Quaternion.LookRotation(direction);
             transform.rotation = Quaternion.Slerp(transform.rotation, targetRot, Time.deltaTime * 5f);
-        }
-        else
+        } else
         {
             moveDirection = Vector3.zero;
         }
@@ -202,25 +187,4 @@ public class EnemyAI : MonoBehaviour
             currentState = State.Roam; //...stop chasing and enter Idle state
         }
     }
-
-    private bool CheckAndDamageDoor(Vector3 forwardDir)
-    {
-        float doorCheckDistance = 1.5f;
-        float doorDamagePerSecond = 25f;
-
-        Vector3 rayOrigin = transform.position + Vector3.up * 1.0f;
-
-        if(Physics.Raycast(rayOrigin, forwardDir, out RaycastHit hit, doorCheckDistance))
-        {
-            Door door = hit.collider.GetComponent<Door>();
-            if (door != null && !door.isBroken)
-            {
-                door.TakeDamage(doorDamagePerSecond * Time.deltaTime);
-                return true;
-            }
-        }
-        return false;
-
-    }
 }
-

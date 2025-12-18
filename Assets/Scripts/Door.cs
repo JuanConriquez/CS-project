@@ -32,6 +32,14 @@ public class Door : MonoBehaviour
     private Quaternion openRotation;
     private Collider doorCollider;
     */
+
+    // Door audio
+    [Header("Audio")]
+    public AudioClip openDoorSFX;
+    public AudioClip closeDoorSFX;
+    [Range(0f, 1f)] public float doorVolume = 1f;
+    private AudioSource audioSource;
+
     void Awake()
     {
         /*
@@ -48,6 +56,14 @@ public class Door : MonoBehaviour
         closedLocalPos = transform.localPosition;
         Vector3 dir = slideDirection.sqrMagnitude > 0.001f ? slideDirection.normalized : Vector3.right;
         openLocalPos = closedLocalPos + (dir * slideDistance);
+
+        // setup AudioSource
+        audioSource = GetComponent<AudioSource>();
+        if (audioSource == null)
+            audioSource = gameObject.AddComponent<AudioSource>();
+
+        audioSource.playOnAwake = false;
+        audioSource.spatialBlend = 1f; // 3D sound
     }
 
     // TryOpenOrClose(Inventory inventory)
@@ -72,6 +88,14 @@ public class Door : MonoBehaviour
         //Toggle open/closed state for doors
         isOpen = !isOpen;
         Debug.Log($"[Door] {(isOpen ? "Opening" : "Closing")} door.");
+
+        // 🔊 ADD — play open / close sound
+        if (audioSource != null)
+        {
+            AudioClip clip = isOpen ? openDoorSFX : closeDoorSFX;
+            if (clip != null)
+                audioSource.PlayOneShot(clip, doorVolume);
+        }
     }
 
     // TakeDamage()
@@ -134,5 +158,9 @@ public class Door : MonoBehaviour
     public void ForceOpen()
     {
         isOpen = true;
+
+        //  sound when forced open
+        if (audioSource != null && openDoorSFX != null)
+            audioSource.PlayOneShot(openDoorSFX, doorVolume);
     }
 }

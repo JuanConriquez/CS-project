@@ -7257,7 +7257,7 @@ PrefabInstance:
       objectReference: {fileID: 8088654609851731617}
     - target: {fileID: 5379132439161530497, guid: 578aab00db6034d4198126fbabd2f0e5, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -31.2
+      value: -10.86149
       objectReference: {fileID: 0}
     - target: {fileID: 5379132439161530497, guid: 578aab00db6034d4198126fbabd2f0e5, type: 3}
       propertyPath: m_LocalPosition.y
@@ -7265,7 +7265,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5379132439161530497, guid: 578aab00db6034d4198126fbabd2f0e5, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -35.5
+      value: 2.50473
       objectReference: {fileID: 0}
     - target: {fileID: 5379132439161530497, guid: 578aab00db6034d4198126fbabd2f0e5, type: 3}
       propertyPath: m_LocalRotation.w
@@ -7391,6 +7391,12 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 5824098511315960636, guid: 578aab00db6034d4198126fbabd2f0e5, type: 3}
       insertIndex: -1
       addedObject: {fileID: 6076431626298896461}
+    - targetCorrespondingSourceObject: {fileID: 5824098511315960636, guid: 578aab00db6034d4198126fbabd2f0e5, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7800531653554267125}
+    - targetCorrespondingSourceObject: {fileID: 5824098511315960636, guid: 578aab00db6034d4198126fbabd2f0e5, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4102161609638611612}
   m_SourcePrefab: {fileID: 100100000, guid: 578aab00db6034d4198126fbabd2f0e5, type: 3}
 --- !u!4 &4728830863014055326 stripped
 Transform:
@@ -7416,6 +7422,127 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::FlashlightToggle
   flashlight: {fileID: 2811553858213225129}
   toggleKey: 102
+--- !u!82 &7800531653554267125
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4756453302980866979}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_Resource: {fileID: 0}
+  m_PlayOnAwake: 0
+  m_Volume: 0.3
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 15
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!114 &4102161609638611612
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4756453302980866979}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a65bd3c5cdcfe4004af553c1da3cefbb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FootstepAudio
+  footstepClips:
+  - {fileID: 8300000, guid: 9af51b9d540464df6aabdaf375d7db11, type: 3}
+  - {fileID: 8300000, guid: ac98d4d8a4dca47d18e4163ea44e4010, type: 3}
+  - {fileID: 8300000, guid: 93d56b4a16043474eac89b3ddc246089, type: 3}
+  - {fileID: 8300000, guid: a728803972e0b484a830faa795021441, type: 3}
+  - {fileID: 8300000, guid: d549d6b32866140e0a723c8237977415, type: 3}
+  - {fileID: 8300000, guid: fa2c9d36efbf747c0b71c73413c5f586, type: 3}
+  - {fileID: 8300000, guid: b323d1b70696b4f25a8a2cafe57fd50d, type: 3}
+  - {fileID: 8300000, guid: ea4aa8ceca78d499fabec84b2d8cb6bf, type: 3}
+  walkStepInterval: 0.5
+  runStepInterval: 0.35
+  movementThreshold: 0.1
 --- !u!4 &6374721976937093150 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5379132439161530497, guid: 578aab00db6034d4198126fbabd2f0e5, type: 3}
