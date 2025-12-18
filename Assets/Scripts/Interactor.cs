@@ -25,7 +25,7 @@ public class Interactor : MonoBehaviour
             playerCamera = GetComponentInChildren<Camera>();
         }
     }
-   
+
     // Update is called once per frame
     void Update()
     {
@@ -48,6 +48,14 @@ public class Interactor : MonoBehaviour
         Ray ray = new Ray(playerCamera.transform.position, playerCamera.transform.forward);
         if (Physics.Raycast(ray, out RaycastHit hitInfo, interactDistance)) //When the ray hits an object...
         {
+            //juan - if ray hits a book that gives a key
+            GiveKey giveKey = hitInfo.collider.GetComponent<GiveKey>();
+            if (giveKey != null)
+            {
+                giveKey.Interact(inventory);
+                return;
+            }
+
             // If ray hits a key
             KeyPickup keyPickup = hitInfo.collider.GetComponent<KeyPickup>();
             if (keyPickup != null)
