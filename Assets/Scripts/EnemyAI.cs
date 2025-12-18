@@ -21,6 +21,14 @@ public class EnemyAI : MonoBehaviour
     public float waitTimeAtWaypoint = 2f; //Time the enemy waits at each waypoint before moving to the next one
     public float waypointTolerance = 0.5f; //Distance to waypoint before considered "arrived"
 
+    [Header("Attack")]
+    public int damagePerHit = 10;
+    public float attackRange = 1.5f;
+    public float attackCooldown = 1f; // seconds between hits
+
+    private float attackTimer = 0f;
+    private PlayerHealth playerHealth;
+
     private CharacterController controller;
 
     // Two enemy states: Roam and Chasing
@@ -39,6 +47,8 @@ public class EnemyAI : MonoBehaviour
         controller = GetComponent<CharacterController>();
 
         animator = GetComponentInChildren<Animator>();
+
+        playerHealth = player.GetComponent<PlayerHealth>();
 
         if (player == null)
         {
@@ -60,6 +70,7 @@ public class EnemyAI : MonoBehaviour
         if (player == null) return;
 
         float distanceToPlayer = Vector3.Distance(transform.position, player.position);
+        attackTimer -= Time.deltaTime;
 
         switch (currentState)
         {
@@ -165,7 +176,6 @@ public class EnemyAI : MonoBehaviour
     {
         animator.SetBool("isRoaming", false);
         animator.SetBool("isChasing", true);
-        animator.SetBool("isIdle", false);
 
         Vector3 direction = (player.position - transform.position); //Rotate the enemy to face the player more directly
         direction.y = 0f;
@@ -182,9 +192,28 @@ public class EnemyAI : MonoBehaviour
             moveDirection = Vector3.zero;
         }
 
+        if (distanceToPlayer <= attackRange)
+        {
+            TryAttack();
+        }
+
         if (distanceToPlayer > loseSightRadius) //If player is far enough...
         {
             currentState = State.Roam; //...stop chasing and enter Idle state
         }
+    }
+
+    void TryAttack()
+    {
+        if (attackTimer > 0f) return;
+        if (playerHealth == null) return;
+
+        attackTimer = attackCooldown;
+
+        // Optional: play attack animation
+        //animator.SetTrigger("attack");
+
+        // Actually deal damage
+        playerHealth.TakeDamage(damagePerHit);
     }
 }
