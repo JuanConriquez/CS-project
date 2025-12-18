@@ -14,9 +14,12 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/gabetest.unity
     guid: 0132a58bcb25a534b9b3ed0cc2fdc55a
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/skylertest.unity
     guid: f4c862242126c45a4afc9bdd2deeb836
+  - enabled: 1
+    path: Assets/Scenes/rafaeltest1.unity
+    guid: 10367f53d043a824388c33d7786d46a0
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   m_UseUCBPForAssetBundles: 0
