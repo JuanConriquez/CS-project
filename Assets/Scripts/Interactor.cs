@@ -52,6 +52,11 @@ public class Interactor : MonoBehaviour
             GiveKey giveKey = hitInfo.collider.GetComponent<GiveKey>();
             if (giveKey != null)
             {
+                giveKey = hitInfo.collider.GetComponentInParent<GiveKey>();
+            }
+            if(giveKey != null)
+            {
+                Debug.Log($"[Interactor] Found GiveKey on: {giveKey.gameObject.name}");
                 giveKey.Interact(inventory);
                 return;
             }

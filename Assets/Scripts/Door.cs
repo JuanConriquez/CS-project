@@ -9,6 +9,10 @@ public class Door : MonoBehaviour
     public bool requiresKey = false; 
     public string requiredKeyID = "RoomA";
 
+    [Tooltip("For doors that need all 4 keys")]
+    public bool requiresAllKeys = false;
+    public string[] requiredKeyIDs; 
+
     // Door health settings for enemy to break down door
     public float maxHealth = 100f;
     [SerializeField] private float currentHealth;
@@ -76,7 +80,17 @@ public class Door : MonoBehaviour
             return;
         }
 
-        if (requiresKey) //Check if player has correct key
+        //for the victory door that need 4 keys
+        if (requiresAllKeys)
+        {
+            if (inventory == null || !inventory.HasAllKeys(requiredKeyIDs))
+            { 
+            Debug.Log("[Door] Locked. Requires ALL keys to open");
+                return;
+        }
+    }
+
+      else  if (requiresKey) //Check if player has correct key
         {
             if (inventory == null || !inventory.HasKey(requiredKeyID)) //If player has no inventory or wrong key...
             {
